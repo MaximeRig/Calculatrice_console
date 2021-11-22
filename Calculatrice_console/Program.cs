@@ -1,10 +1,7 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
-namespace Calculatrice
-{
-    class Program
-    {
+namespace Calculatrice {
+    class Program {
         private static string _questionForNumber = "Veuillez saisir un nombre : ";
         private static string[] _operationList = new string[4] { "a", "s", "m", "d" };
         private static string? _inputOperation;
@@ -12,8 +9,7 @@ namespace Calculatrice
         private static decimal _num1;
         private static decimal _num2;
 
-        static void Main()
-        {
+        static void Main() {
             Console.WriteLine("Bienvenue sur ma première application en C#: une calculatrice.");
 
             _num1 = GetNumber();
@@ -29,22 +25,18 @@ namespace Calculatrice
             ShowResult();
         }
 
-        static string GetOperation()
-        {
+        static string GetOperation() {
             string? input = Console.ReadLine();
-            while (!Array.Exists(_operationList, el => el == input))
-            {
+            while (!Array.Exists(_operationList, el => el == input)) {
                 AskForOperation();
-                input= Console.ReadLine();
+                input = Console.ReadLine();
             }
 
             return input;
         }
 
-        static void Calculate(string operation)
-        {
-            switch (operation)
-            {
+        static void Calculate(string operation) {
+            switch (operation) {
                 case "a":
                     _result = _num1 + _num2;
                     break;
@@ -55,12 +47,10 @@ namespace Calculatrice
                     _result = _num1 * _num2;
                     break;
                 case "d":
-                    while (_num2 == 0)
-                    {
+                    while (_num2 == 0) {
                         Console.WriteLine("Vous ne pouvez pas diviser par 0, veuillez choisir un autre nombre.");
                         string? input2 = Console.ReadLine();
-                        while (!IsInputParsed(input2))
-                        {
+                        while (!IsInputParsed(input2)) {
                             Console.WriteLine(_questionForNumber);
                             input2 = Console.ReadLine();
                         }
@@ -71,17 +61,14 @@ namespace Calculatrice
             }
         }
 
-        static void ShowResult()
-        {
+        static void ShowResult() {
             Console.WriteLine($"Résultat = {_result}");
         }
 
-        static decimal GetNumber()
-        {
+        static decimal GetNumber() {
             Console.WriteLine(_questionForNumber);
             string? input = Console.ReadLine();
-            while (!IsInputParsed(input))
-            {
+            while (!IsInputParsed(input)) {
                 Console.WriteLine(_questionForNumber);
                 input = Console.ReadLine();
             }
@@ -89,8 +76,7 @@ namespace Calculatrice
             return Convert.ToDecimal(input);
         }
 
-        static void AskForOperation()
-        {
+        static void AskForOperation() {
             Console.WriteLine("Veuillez choisir une opération :");
             Console.WriteLine("\ttaper a pour faire une addition");
             Console.WriteLine("\ttaper s pour faire une soustraction");
@@ -98,8 +84,7 @@ namespace Calculatrice
             Console.WriteLine("\ttaper d pour faire une division");
         }
 
-        static bool IsInputParsed(string input)
-        {
+        static bool IsInputParsed(string input) {
             return Decimal.TryParse(input, NumberStyles.Any, new CultureInfo("fr-FR"), out decimal result);
         }
     }

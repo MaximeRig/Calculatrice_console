@@ -4,8 +4,8 @@ using System;
 namespace Calculatrice {
     class Program {
         private static string _questionForNumber = "Veuillez saisir un nombre : ";
-        private static string[] _operationList = new string[4] { "a", "s", "m", "d" };
-        private static string? _inputOperation;
+        private static string[] _operationTypeList = new string[4] { "a", "s", "m", "d" };
+        private static string? _operationType;
         private static decimal _result = 0;
         private static decimal _num1;
         private static decimal _num2;
@@ -17,27 +17,27 @@ namespace Calculatrice {
 
             AskForOperation();
 
-            _inputOperation = GetOperation();
+            SetOperationType();
 
             _num2 = GetNumber();
                 
-            Calculate(_inputOperation);
+            Calculate();
 
             ShowResult();
         }
 
-        static string GetOperation() {
+        static void SetOperationType() {
             string? input = Console.ReadLine();
-            while (!Array.Exists(_operationList, el => el == input)) {
+            while (!Array.Exists(_operationTypeList, el => el == input)) {
                 AskForOperation();
                 input = Console.ReadLine();
             }
 
-            return input;
+            _operationType = input;
         }
 
-        static void Calculate(string operation) {
-            switch (operation) {
+        static void Calculate() {
+            switch (_operationType) {
                 case "a":
                     _result = _num1 + _num2;
                     break;
@@ -64,6 +64,11 @@ namespace Calculatrice {
 
         static void ShowResult() {
             Console.WriteLine($"Résultat = {_result}");
+        }
+
+        private void ShowOperation()
+        {
+            Console.WriteLine($"Opération : ");
         }
 
         static decimal GetNumber() {

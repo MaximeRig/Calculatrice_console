@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System;
 
 namespace Calculatrice {
     class Program {
@@ -19,7 +20,7 @@ namespace Calculatrice {
             _inputOperation = GetOperation();
 
             _num2 = GetNumber();
-
+                
             Calculate(_inputOperation);
 
             ShowResult();

@@ -15,7 +15,7 @@ namespace UserInterface
 
         public static void Start()
         {
-            Calculatrice_console.ConsoleIO.write("Bienvenue sur ma première application en C#: une calculatrice.");
+            ConsoleIO.write("Bienvenue sur ma première application en C#: une calculatrice.");
 
             _num1 = GetNumber();
 
@@ -60,12 +60,12 @@ namespace UserInterface
                 case "d":
                     while (_num2 == 0)
                     {
-                        Calculatrice_console.ConsoleIO.write("Vous ne pouvez pas diviser par 0, veuillez choisir un autre nombre.");
+                        ConsoleIO.write("Vous ne pouvez pas diviser par 0, veuillez choisir un autre nombre.");
                         string? input2 = Console.ReadLine();
                         while (!IsInputParsed(input2))
                         {
-                            Calculatrice_console.ConsoleIO.write(_questionForNumber);
-                            input2 = Calculatrice_console.ConsoleIO.read();
+                            ConsoleIO.write(_questionForNumber);
+                            input2 = ConsoleIO.read();
                         }
                         _num2 = Convert.ToDecimal(input2);
                     }
@@ -76,7 +76,7 @@ namespace UserInterface
 
         private static void ShowResult()
         {
-            Calculatrice_console.ConsoleIO.write($"Résultat = {_result}");
+            ConsoleIO.write($"Résultat = {_result}");
         }
 
         private static int getIndexOfOperation()
@@ -88,17 +88,17 @@ namespace UserInterface
         {
             int index = getIndexOfOperation();
 
-            Calculatrice_console.ConsoleIO.write($"Opération : {_num1} {_num2}");
+            ConsoleIO.write($"Opération : {_num1} {_num2}");
         }
 
         private static decimal GetNumber()
         {
-            Calculatrice_console.ConsoleIO.write(_questionForNumber);
+            ConsoleIO.write(_questionForNumber);
 
-            string? input = Calculatrice_console.ConsoleIO.read();
+            string? input = ConsoleIO.read();
             while (!IsInputParsed(input))
             {
-                Calculatrice_console.ConsoleIO.write(_questionForNumber);
+                ConsoleIO.write(_questionForNumber);
                 input = Console.ReadLine();
             }
 
@@ -107,11 +107,11 @@ namespace UserInterface
 
         private static void AskForOperation()
         {
-            Calculatrice_console.ConsoleIO.write("Veuillez choisir une opération :");
-            Calculatrice_console.ConsoleIO.write("\ttaper a pour faire une addition");
-            Calculatrice_console.ConsoleIO.write("\ttaper s pour faire une soustraction");
-            Calculatrice_console.ConsoleIO.write("\ttaper m pour faire une multiplication");
-            Calculatrice_console.ConsoleIO.write("\ttaper d pour faire une division");
+            ConsoleIO.write("Veuillez choisir une opération :");
+            ConsoleIO.write("\ttaper a pour faire une addition");
+            ConsoleIO.write("\ttaper s pour faire une soustraction");
+            ConsoleIO.write("\ttaper m pour faire une multiplication");
+            ConsoleIO.write("\ttaper d pour faire une division");
         }
 
         private static bool IsInputParsed(string input)
